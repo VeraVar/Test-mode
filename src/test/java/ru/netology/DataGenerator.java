@@ -32,20 +32,20 @@ public class DataGenerator {
             .statusCode(200);
     }
 
-    public static String userName(String Locale) {
+    public static String getUserName(String Locale) {
         Faker faker = new Faker(new Locale(Locale));
         return faker.name().username();
     }
 
-    public static String userPassword(String Locale) {
+    public static String getUserPassword(String Locale) {
         Faker faker = new Faker(new Locale(Locale));
         return faker.internet().password();
     }
 
     public static UserInfo generateUser(String locale, boolean isBlocked) {
         return new UserInfo(
-            userName(locale),
-            userPassword(locale),
+            getUserName(locale),
+            getUserPassword(locale),
             (isBlocked) ? "blocked" : "active");
     }
 
@@ -56,7 +56,7 @@ public class DataGenerator {
     }
 
     public static UserInfo generateInvalidLogin(String locale, boolean isBlocked) {
-        String password = userPassword(locale);
+        String password = getUserPassword(locale);
         UserInfo user = new UserInfo(
             "vasya",
             password,
@@ -69,7 +69,7 @@ public class DataGenerator {
     }
 
     public static UserInfo generateInvalidPassword(String locale, boolean isBlocked) {
-        String login = userName(locale);
+        String login = getUserName(locale);
         UserInfo user = new UserInfo(
             login,
             "password",
